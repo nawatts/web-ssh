@@ -1,0 +1,13 @@
+node_modules
+.editorconfig
+.gitignore
+
+# Only include client bundle built by webpack
+client/*
+client/.*
+!client/index.js
+!client/index.js.map
+
+demo
+
+server/.eslintrc
