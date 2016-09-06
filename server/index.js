@@ -1,18 +1,6 @@
-const express = require('express'); // eslint-disable-line import/no-extraneous-dependencies
-const expressWs = require('express-ws'); // eslint-disable-line import/no-extraneous-dependencies
-const fs = require('fs');
 const SSHClient = require('ssh2').Client;
 
-const REMOTE_HOST = '';
-const REMOTE_USER = '';
-const PATH_TO_KEY = '';
-
-const app = express();
-expressWs(app);
-
-app.use(express.static(__dirname));
-
-app.ws('/', (ws) => {
+module.exports = (connectCallback) => (ws) => {
   const conn = new SSHClient();
 
   ws.on('close', () => {
@@ -59,12 +47,5 @@ app.ws('/', (ws) => {
         }
       });
     });
-  }).connect({
-    host: REMOTE_HOST,
-    port: 22,
-    username: REMOTE_USER,
-    privateKey: fs.readFileSync(PATH_TO_KEY),
-  });
-});
-
-app.listen(5000);
+  }).connect(connectCallback(ws));
+};

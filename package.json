@@ -8,6 +8,7 @@
     "demo:client": "cd demo && NODE_ENV=production webpack-dev-server --hot --inline",
     "predemo:client": "npm run client:build:prod",
     "demo:client:build": "cd demo && NODE_ENV=production webpack",
+    "demo:server": "node demo/server.js",
     "demo:lint": "eslint demo",
     "demo:clean": "rimraf ./demo/build",
     "client:build:dev": "cd client && webpack",
@@ -15,7 +16,6 @@
     "client:test": "cd client && NODE_ENV=test karma start",
     "client:lint": "eslint client/src client/tests client/*conf*",
     "client:clean": "rimraf ./client/index.js*",
-    "server": "node server/index.js",
     "server:lint": "eslint server",
     "lint": "npm run client:lint && npm run server:lint && npm run demo:lint",
     "clean": "npm run demo:clean && npm run client:clean"
